@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Stock Wizard // Trades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#050508;--glass:#ffffff0a;--hair:#ffffff1a;--hair2:#ffffff0d;--gold:#ffd98a;--cyan:#22d3ee;
+    --good:#34f5c5;--bad:#ff5468;--txt:#eef2fa;--dim:#8a97ad;--dimmer:#5b6884}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:'Rajdhani',sans-serif;min-height:100vh;padding:20px 18px 80px;
+    background-image:radial-gradient(900px 500px at 80% -5%,#8a5a0026,transparent 60%),radial-gradient(700px 420px at 0% 108%,#003d5c2e,transparent 58%)}
+  .wrap{max-width:860px;margin:0 auto}
+  header{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--hair);padding-bottom:12px;margin-bottom:16px;flex-wrap:wrap}
+  h1{font-family:'Orbitron';font-size:16px;letter-spacing:3px;background:linear-gradient(90deg,#ffd98a,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stamp{margin-left:auto;font-family:'Share Tech Mono';font-size:10px;color:var(--dimmer)}
+  a.back{font-family:'Share Tech Mono';font-size:11px;color:var(--dim);text-decoration:none}
+  a.back:hover{color:var(--gold)}
+  .card{background:linear-gradient(165deg,var(--glass),transparent);border:1px solid var(--hair);border-radius:14px;padding:18px;margin-bottom:14px;box-shadow:0 16px 44px #00000066, inset 0 1px 0 #ffffff10}
+  .card h3{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin-bottom:12px;display:flex}
+  .card h3 .src{margin-left:auto;font-family:'Share Tech Mono';font-size:8.5px;color:var(--dimmer);font-weight:400}
+  table{width:100%;border-collapse:collapse;font-family:'Share Tech Mono';font-size:11.5px}
+  th{font-family:'Rajdhani';font-size:10px;letter-spacing:2px;color:var(--dimmer);text-align:left;padding:6px 8px;border-bottom:1px solid var(--hair);text-transform:uppercase;font-weight:700}
+  td{padding:8px;border-bottom:1px solid var(--hair2)}
+  tr.click{cursor:pointer}
+  tr.click:hover td{background:#ffd98a0d}
+  .ok{color:var(--good)}.er{color:var(--bad)}
+  .note{font-family:'Share Tech Mono';font-size:10px;color:var(--dimmer);margin-top:10px;line-height:1.7}
+  .scrim{position:fixed;inset:0;background:#02030788;display:none;z-index:8}
+  .scrim.on{display:block}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:9;background:linear-gradient(180deg,#0d0d16f8,#07070efb);
+    border-top:1px solid #ffd98a55;border-radius:18px 18px 0 0;padding:20px 22px 30px;transform:translateY(105%);
+    transition:.25s cubic-bezier(.2,.8,.2,1);max-height:75vh;overflow-y:auto;max-width:640px;margin:0 auto;box-shadow:0 -20px 60px #000c}
+  .sheet.open{transform:none}
+  .sheet .t{font-family:'Orbitron';font-size:13px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;display:flex;align-items:center}
+  .sheet .x{margin-left:auto;font-family:'Share Tech Mono';font-size:11px;color:var(--dim);cursor:pointer;border:1px solid var(--hair);padding:3px 10px;border-radius:6px}
+  .kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--hair2);font-family:'Share Tech Mono';font-size:11.5px;color:var(--dim)}
+  .kv b{color:var(--txt);font-weight:400}
+  .rbar{height:14px;border:1px solid var(--hair);border-radius:7px;overflow:hidden;background:#ffffff08;margin-top:12px}
+  .rbar div{height:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>STOCK WIZARD // TRADES</h1>
+    <a class="back" href="./index.html">← main dashboard</a>
+    <span class="stamp" id="stamp">loading…</span>
+  </header>
+  <div class="card"><h3>All books <span class="src">feed: board-data.js, rebuilt every tick from forward_state*.json</span></h3>
+    <table id="legs"><tr><th>Book</th><th>Start</th><th>Equity</th><th>Return</th><th>Trades</th><th>Ticks</th></tr></table>
+  </div>
+  <div class="card"><h3>Scalp trade log <span class="src">tap a trade for the breakdown</span></h3>
+    <table id="log"><tr><th>Booked</th><th>Sym</th><th>Side</th><th>Exit</th><th>R</th><th>P&L</th></tr></table>
+    <div class="note" id="killnote"></div>
+  </div>
+  <div class="note">Data refreshes with the board snapshot (daily 7:25a + on demand). Chart replay per trade is queued behind the engine storing price history. Kill gate: stock-wizard/SCALP-KILL-GATE.md.</div>
+</div>
+<div class="scrim" id="scrim" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet"><div class="t" id="sh-t">TRADE<span class="x" onclick="closeSheet()">✕</span></div><div id="sh-b"></div></div>
+<script src="board-data.js"></script>
+<script>
+const B=window.BOARD||{}, W=(B.wizard&&B.wizard.legs)||[];
+const age=iso=>{if(!iso)return'?';const m=(Date.now()-new Date(iso))/60000;return m<90?Math.round(m)+' min ago':m<2880?(m/60).toFixed(1)+' h ago':Math.round(m/1440)+' d ago'};
+document.getElementById('stamp').textContent='snapshot '+age(B.asOf);
+const legsT=document.getElementById('legs');
+W.forEach(l=>{const r=((l.equity-l.start)/l.start*100);
+  legsT.insertAdjacentHTML('beforeend',`<tr><td>${l.id}</td><td>$${l.start}</td><td>$${l.equity.toFixed(0)}</td><td class="${r<0?'er':r>0?'ok':''}">${r>=0?'+':''}${r.toFixed(1)}%</td><td>${l.closedN+l.openN}</td><td>${l.ticks}</td></tr>`)});
+const scalp=W.find(l=>l.id==='scalp-learn-2500')||W.find(l=>l.id==='scalp-500'), logT=document.getElementById('log');
+if(scalp){
+  scalp.trades.forEach((t,i)=>logT.insertAdjacentHTML('beforeend',
+    `<tr class="click" onclick="openT(${i})"><td>${t.booked||''}</td><td>${t.symbol}</td><td>${t.side}</td><td>${t.reason}</td><td class="${t.r<0?'er':'ok'}">${(t.r>=0?'+':'')+t.r.toFixed(2)}R</td><td class="${t.pnl<0?'er':'ok'}">${t.pnl<0?'−':'+'}$${Math.abs(t.pnl).toFixed(0)}</td></tr>`));
+  document.getElementById('killnote').textContent=`KILL GATE ARMED: $${scalp.equity.toFixed(2)} left of $${scalp.start} · retire at <$52, at trade #25 without full recovery, or 9/30 — whichever first.`;
+}
+async function openT(i){const t=scalp.trades[i];
+  document.getElementById('sh-t').innerHTML=`SCALP — ${t.symbol} ${t.side.toUpperCase()}<span class="x" onclick="closeSheet()">✕</span>`;
+  const bw=Math.min(100,Math.abs(t.r)*40);
+  document.getElementById('sh-b').innerHTML=
+    `<canvas id="tchart" width="580" height="220" style="width:100%;border:1px solid var(--hair);border-radius:8px;background:#030910"></canvas>
+     <div class="note" id="tchart-note" style="margin:4px 0 10px">loading price series…</div>
+     <div class="kv">ENTRY<b>${t.entry}</b></div><div class="kv">EXIT<b>${t.exit}</b></div>
+     <div class="kv">EXIT REASON<b>${t.reason.toUpperCase()}</b></div>
+     <div class="kv">R MULTIPLE<b class="${t.r<0?'er':'ok'}">${(t.r>=0?'+':'')+t.r.toFixed(3)}R</b></div>
+     <div class="kv">RETURN<b>${(t.ret*100).toFixed(2)}%</b></div>
+     <div class="kv">P&L<b class="${t.pnl<0?'er':'ok'}">${t.pnl<0?'−':'+'}$${Math.abs(t.pnl).toFixed(2)}</b></div>
+     <div class="kv">BOOKED<b>${t.booked}</b></div>
+     <div class="rbar"><div style="width:${bw}%;background:${t.r<0?'linear-gradient(90deg,#ff5468,#ff8291)':'linear-gradient(90deg,#34f5c5,#22d3ee)'}"></div></div>`;
+  document.getElementById('sheet').classList.add('open');document.getElementById('scrim').classList.add('on');
+  drawReplay(t).catch(e=>{document.getElementById('tchart-note').textContent='chart: series unavailable ('+e.message+')'});
+}
+const HCACHE={};
+async function drawReplay(t){
+  const sym=t.symbol;
+  if(!HCACHE[sym]){const r=await fetch(`./history-${sym}.json`);if(!r.ok)throw new Error('no history file');HCACHE[sym]=await r.json();}
+  const bars=HCACHE[sym].bars;
+  const eD=String(t.entry).slice(0,10), xD=String(t.exit).slice(0,10);
+  let i0=bars.findIndex(b=>b.d>=eD), i1=bars.findIndex(b=>b.d>=xD);
+  if(i0<0)throw new Error('entry day not in series'); if(i1<0)i1=bars.length-1;
+  const a=Math.max(0,i0-7), z=Math.min(bars.length-1,i1+7), win=bars.slice(a,z+1);
+  const c=document.getElementById('tchart'); if(!c)return; const x=c.getContext('2d');
+  const W=c.width,H=c.height; x.clearRect(0,0,W,H);
+  const lo=Math.min(...win.map(b=>b.l))*0.998, hi=Math.max(...win.map(b=>b.h))*1.002;
+  const X=i=>26+i*((W-44)/(win.length-1||1)), Y=v=>H-18-(v-lo)/(hi-lo||1)*(H-38);
+  x.strokeStyle='#122238';x.lineWidth=1;
+  for(let g=0;g<4;g++){const y=20+g*(H-38)/3;x.beginPath();x.moveTo(8,y);x.lineTo(W-8,y);x.stroke();
+    x.fillStyle='#3a5578';x.font='9px monospace';x.fillText((lo+(3-g)*(hi-lo)/3).toFixed(0),W-30,y-3);}
+  const bw2=Math.max(3,Math.min(9,(W-60)/win.length*0.55));
+  win.forEach((b,i)=>{const up=b.c>=b.o;x.strokeStyle=x.fillStyle=up?'#34f5c5':'#ff5468';
+    x.beginPath();x.moveTo(X(i),Y(b.h));x.lineTo(X(i),Y(b.l));x.stroke();
+    x.fillRect(X(i)-bw2/2,Y(Math.max(b.o,b.c)),bw2,Math.max(2,Math.abs(Y(b.o)-Y(b.c))));});
+  const mark=(idx,col,lab,above)=>{const b=win[idx];if(!b)return;const yy=above?Y(b.h)-8:Y(b.l)+8;
+    x.fillStyle=col;x.shadowColor=col;x.shadowBlur=9;x.beginPath();x.arc(X(idx),yy,4.5,0,7);x.fill();x.shadowBlur=0;
+    x.font='bold 10px monospace';x.fillText(lab,Math.min(X(idx)+7,W-52),yy+3);};
+  mark(i0-a,'#22d3ee','IN',true); mark(i1-a,'#ffb454','OUT',true);
+  document.getElementById('tchart-note').textContent=
+    `${sym} daily · ${win[0].d} → ${win[win.length-1].d} · entry/exit days marked (series: capture engine, updated ${HCACHE[sym].updated.slice(0,10)})`;
+}
+function closeSheet(){document.getElementById('sheet').classList.remove('open');document.getElementById('scrim').classList.remove('on')}
+</script>
+</body>
+</html>
