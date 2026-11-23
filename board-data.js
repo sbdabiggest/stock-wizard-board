@@ -1,13 +1,13 @@
 window.BOARD = {
- "asOf": "2026-11-22T00:26:00Z",
+ "asOf": "2026-11-23T22:47:18Z",
  "wizard": {
   "legs": [
    {
     "id": "base-500",
     "start": 500.0,
     "equity": 500.0,
-    "ticks": 72,
-    "lastTick": "2026-10-23",
+    "ticks": 73,
+    "lastTick": "2026-11-23",
     "openN": 0,
     "closedN": 0,
     "wins": 0,
@@ -49,8 +49,8 @@ window.BOARD = {
     "id": "base-1500",
     "start": 1500.0,
     "equity": 1437.0,
-    "ticks": 67,
-    "lastTick": "2026-10-23",
+    "ticks": 68,
+    "lastTick": "2026-11-23",
     "openN": 0,
     "closedN": 3,
     "wins": 1,
@@ -108,7 +108,6 @@ window.BOARD = {
      }
     ],
     "spark": [
-     1037.5,
      1042.5,
      1160.0,
      1145.0,
@@ -137,17 +136,18 @@ window.BOARD = {
      1437.0,
      1437.0,
      1437.0,
+     1437.0,
      1437.0
     ]
    },
    {
     "id": "base-5000",
     "start": 5000.0,
-    "equity": 4290.5,
-    "ticks": 52,
-    "lastTick": "2026-10-23",
-    "openN": 1,
-    "closedN": 9,
+    "equity": 2741.0,
+    "ticks": 53,
+    "lastTick": "2026-11-23",
+    "openN": 0,
+    "closedN": 10,
     "wins": 4,
     "trades": [
      {
@@ -313,11 +313,15 @@ window.BOARD = {
       "contracts": 1,
       "entry_date": "2026-10-16",
       "entry_S": 183.47,
-      "last_mark": 15.775
+      "last_mark": 15.775,
+      "exit_date": "2026-11-13",
+      "exit_mid": 0.28,
+      "reason": "expired_settle_gap",
+      "pnl": -1722.0,
+      "days_held": 28
      }
     ],
     "spark": [
-     4115.0,
      4285.0,
      4330.0,
      4212.5,
@@ -346,15 +350,16 @@ window.BOARD = {
      4473.0,
      4700.5,
      4235.5,
-     4290.5
+     4290.5,
+     2741.0
     ]
    },
    {
     "id": "debit-1500",
     "start": 1500.0,
     "equity": 1500.0,
-    "ticks": 52,
-    "lastTick": "2026-10-23",
+    "ticks": 53,
+    "lastTick": "2026-11-23",
     "openN": 0,
     "closedN": 0,
     "wins": 0,
@@ -396,8 +401,8 @@ window.BOARD = {
     "id": "spread-1500",
     "start": 1500.0,
     "equity": 1509.5,
-    "ticks": 67,
-    "lastTick": "2026-10-23",
+    "ticks": 68,
+    "lastTick": "2026-11-23",
     "openN": 0,
     "closedN": 1,
     "wins": 1,
@@ -428,9 +433,9 @@ window.BOARD = {
      1500.0,
      1500.0,
      1500.0,
-     1500.0,
      1501.5,
      1504.5,
+     1509.5,
      1509.5,
      1509.5,
      1509.5,
@@ -459,11 +464,11 @@ window.BOARD = {
    {
     "id": "spread-10k",
     "start": 10000.0,
-    "equity": 9841.5,
-    "ticks": 52,
-    "lastTick": "2026-10-23",
-    "openN": 2,
-    "closedN": 3,
+    "equity": 9245.0,
+    "ticks": 53,
+    "lastTick": "2026-11-23",
+    "openN": 0,
+    "closedN": 5,
     "wins": 2,
     "trades": [
      {
@@ -540,7 +545,11 @@ window.BOARD = {
       "iv_at_entry": 0.243,
       "entry_date": "2026-10-16",
       "entry_S": 709.8,
-      "last_mark": 1.5350000000000001
+      "last_mark": 1.5350000000000001,
+      "exit_date": "2026-11-20",
+      "exit_mark": 6.0,
+      "reason": "expired_settle_gap",
+      "pnl": -493.0
      },
      {
       "symbol": "META",
@@ -556,11 +565,14 @@ window.BOARD = {
       "iv_at_entry": 0.36,
       "entry_date": "2026-10-22",
       "entry_S": 648.85,
-      "last_mark": 1.7750000000000021
+      "last_mark": 3.2749999999999986,
+      "exit_date": "2026-11-23",
+      "exit_mark": 3.275,
+      "reason": "stop",
+      "pnl": -232.5
      }
     ],
     "spark": [
-     10000.0,
      10000.0,
      10000.0,
      10000.0,
@@ -589,74 +601,20 @@ window.BOARD = {
      10087.5,
      10059.0,
      9944.5,
-     9841.5
+     9841.5,
+     9245.0
     ]
    },
    {
     "id": "scalp-learn-2500",
     "start": 2500.0,
-    "equity": 2011.44,
-    "ticks": 33,
-    "lastTick": "2026-10-23",
+    "equity": 2544.18,
+    "ticks": 34,
+    "lastTick": "2026-11-23",
     "openN": 0,
-    "closedN": 20,
-    "wins": 4,
+    "closedN": 30,
+    "wins": 10,
     "trades": [
-     {
-      "symbol": "NVDA",
-      "side": "short",
-      "entry": "2026-09-17T15:30:00",
-      "exit": "2026-09-17T19:30:00",
-      "reason": "stop",
-      "r": -1.104,
-      "ret": -0.00532,
-      "pnl": -55.21,
-      "booked": "2026-09-17"
-     },
-     {
-      "symbol": "NVDA",
-      "side": "short",
-      "entry": "2026-09-18T15:30:00",
-      "exit": "2026-09-18T19:30:00",
-      "reason": "stop",
-      "r": -1.076,
-      "ret": -0.00716,
-      "pnl": -53.78,
-      "booked": "2026-09-18"
-     },
-     {
-      "symbol": "NVDA",
-      "side": "short",
-      "entry": "2026-09-21T19:30:00",
-      "exit": "2026-09-22T13:30:00",
-      "reason": "stop",
-      "r": -1.067,
-      "ret": -0.00801,
-      "pnl": -53.35,
-      "booked": "2026-09-22"
-     },
-     {
-      "symbol": "NVDA",
-      "side": "short",
-      "entry": "2026-09-22T17:30:00",
-      "exit": "2026-09-23T13:30:00",
-      "reason": "target",
-      "r": 2.828,
-      "ret": 0.00813,
-      "pnl": 141.38,
-      "booked": "2026-09-23"
-     },
-     {
-      "symbol": "AMD",
-      "side": "long",
-      "entry": "2026-09-24T15:30:00",
-      "exit": "2026-09-28T14:30:00",
-      "reason": "stop",
-      "r": -1.02,
-      "ret": -0.02522,
-      "pnl": -50.99,
-      "booked": "2026-09-28"
-     },
      {
       "symbol": "NVDA",
       "side": "long",
@@ -821,10 +779,119 @@ window.BOARD = {
       "ret": -0.00762,
       "pnl": -53.48,
       "booked": "2026-10-23"
+     },
+     {
+      "symbol": "AMD",
+      "side": "long",
+      "entry": "2026-10-23T13:30:00",
+      "exit": "2026-10-27T13:30:00",
+      "reason": "target",
+      "r": 1.982,
+      "ret": 0.05986,
+      "pnl": 99.12,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "NVDA",
+      "side": "long",
+      "entry": "2026-10-23T17:30:00",
+      "exit": "2026-10-27T13:30:00",
+      "reason": "target",
+      "r": 2.945,
+      "ret": 0.02757,
+      "pnl": 147.25,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "NVDA",
+      "side": "short",
+      "entry": "2026-10-27T16:30:00",
+      "exit": "2026-10-28T13:30:00",
+      "reason": "stop",
+      "r": -1.063,
+      "ret": -0.00851,
+      "pnl": -53.15,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "NVDA",
+      "side": "short",
+      "entry": "2026-10-28T14:30:00",
+      "exit": "2026-10-30T13:30:00",
+      "reason": "target",
+      "r": 2.957,
+      "ret": 0.0335,
+      "pnl": 147.87,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "AMD",
+      "side": "long",
+      "entry": "2026-10-30T18:30:00",
+      "exit": "2026-11-02T14:30:00",
+      "reason": "target",
+      "r": 1.959,
+      "ret": 0.0242,
+      "pnl": 97.93,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "NVDA",
+      "side": "long",
+      "entry": "2026-10-30T19:30:00",
+      "exit": "2026-11-04T20:30:00",
+      "reason": "stop",
+      "r": -1.015,
+      "ret": -0.0331,
+      "pnl": -50.74,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "AMD",
+      "side": "long",
+      "entry": "2026-11-03T14:30:00",
+      "exit": "2026-11-05T14:30:00",
+      "reason": "stop",
+      "r": -1.01,
+      "ret": -0.04976,
+      "pnl": -50.48,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "AMD",
+      "side": "long",
+      "entry": "2026-11-06T15:30:00",
+      "exit": "2026-11-10T14:30:00",
+      "reason": "target",
+      "r": 1.994,
+      "ret": 0.18972,
+      "pnl": 99.69,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "NVDA",
+      "side": "long",
+      "entry": "2026-11-10T19:30:00",
+      "exit": "2026-11-11T18:30:00",
+      "reason": "target",
+      "r": 2.969,
+      "ret": 0.05092,
+      "pnl": 148.47,
+      "booked": "2026-11-23"
+     },
+     {
+      "symbol": "NVDA",
+      "side": "long",
+      "entry": "2026-11-20T17:30:00",
+      "exit": "2026-11-20T18:30:00",
+      "reason": "stop",
+      "r": -1.064,
+      "ret": -0.00821,
+      "pnl": -53.22,
+      "booked": "2026-11-23"
      }
     ],
     "spark": [
-     2500.0,
      2500.0,
      2500.0,
      2500.0,
@@ -853,7 +920,8 @@ window.BOARD = {
      2221.54,
      2221.54,
      2064.92,
-     2011.44
+     2011.44,
+     2544.18
     ]
    },
    {
@@ -1176,6 +1244,6 @@ window.BOARD = {
     ]
    }
   ],
-  "lastTick": "2026-10-23"
+  "lastTick": "2026-11-23"
  }
 };
