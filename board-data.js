@@ -1,13 +1,13 @@
 window.BOARD = {
- "asOf": "2026-11-25T22:47:41Z",
+ "asOf": "2026-11-26T22:47:23Z",
  "wizard": {
   "legs": [
    {
     "id": "base-500",
     "start": 500.0,
     "equity": 500.0,
-    "ticks": 75,
-    "lastTick": "2026-11-25",
+    "ticks": 76,
+    "lastTick": "2026-11-26",
     "openN": 0,
     "closedN": 0,
     "wins": 0,
@@ -49,8 +49,8 @@ window.BOARD = {
     "id": "base-1500",
     "start": 1500.0,
     "equity": 1437.0,
-    "ticks": 70,
-    "lastTick": "2026-11-25",
+    "ticks": 71,
+    "lastTick": "2026-11-26",
     "openN": 0,
     "closedN": 3,
     "wins": 1,
@@ -108,7 +108,6 @@ window.BOARD = {
      }
     ],
     "spark": [
-     1145.0,
      1162.5,
      1205.0,
      1205.0,
@@ -137,6 +136,7 @@ window.BOARD = {
      1437.0,
      1437.0,
      1437.0,
+     1437.0,
      1437.0
     ]
    },
@@ -144,8 +144,8 @@ window.BOARD = {
     "id": "base-5000",
     "start": 5000.0,
     "equity": 2741.0,
-    "ticks": 55,
-    "lastTick": "2026-11-25",
+    "ticks": 56,
+    "lastTick": "2026-11-26",
     "openN": 0,
     "closedN": 10,
     "wins": 4,
@@ -322,7 +322,6 @@ window.BOARD = {
      }
     ],
     "spark": [
-     4212.5,
      4200.5,
      4716.0,
      4716.0,
@@ -351,6 +350,7 @@ window.BOARD = {
      4290.5,
      2741.0,
      2741.0,
+     2741.0,
      2741.0
     ]
    },
@@ -358,8 +358,8 @@ window.BOARD = {
     "id": "debit-1500",
     "start": 1500.0,
     "equity": 1500.0,
-    "ticks": 55,
-    "lastTick": "2026-11-25",
+    "ticks": 56,
+    "lastTick": "2026-11-26",
     "openN": 0,
     "closedN": 0,
     "wins": 0,
@@ -401,8 +401,8 @@ window.BOARD = {
     "id": "spread-1500",
     "start": 1500.0,
     "equity": 1509.5,
-    "ticks": 70,
-    "lastTick": "2026-11-25",
+    "ticks": 71,
+    "lastTick": "2026-11-26",
     "openN": 0,
     "closedN": 1,
     "wins": 1,
@@ -430,9 +430,9 @@ window.BOARD = {
     ],
     "spark": [
      1500.0,
-     1500.0,
      1501.5,
      1504.5,
+     1509.5,
      1509.5,
      1509.5,
      1509.5,
@@ -465,8 +465,8 @@ window.BOARD = {
     "id": "spread-10k",
     "start": 10000.0,
     "equity": 9245.0,
-    "ticks": 55,
-    "lastTick": "2026-11-25",
+    "ticks": 56,
+    "lastTick": "2026-11-26",
     "openN": 0,
     "closedN": 5,
     "wins": 2,
@@ -574,7 +574,6 @@ window.BOARD = {
     ],
     "spark": [
      10000.0,
-     10000.0,
      10034.0,
      10048.0,
      10080.0,
@@ -602,6 +601,7 @@ window.BOARD = {
      9841.5,
      9245.0,
      9245.0,
+     9245.0,
      9245.0
     ]
    },
@@ -609,8 +609,8 @@ window.BOARD = {
     "id": "scalp-learn-2500",
     "start": 2500.0,
     "equity": 2493.56,
-    "ticks": 36,
-    "lastTick": "2026-11-25",
+    "ticks": 37,
+    "lastTick": "2026-11-26",
     "openN": 0,
     "closedN": 31,
     "wins": 10,
@@ -893,7 +893,6 @@ window.BOARD = {
     ],
     "spark": [
      2500.0,
-     2500.0,
      2444.79,
      2391.01,
      2391.01,
@@ -921,6 +920,7 @@ window.BOARD = {
      2011.44,
      2544.18,
      2544.18,
+     2493.56,
      2493.56
     ]
    },
@@ -1244,6 +1244,6 @@ window.BOARD = {
     ]
    }
   ],
-  "lastTick": "2026-11-25"
+  "lastTick": "2026-11-26"
  }
 };
